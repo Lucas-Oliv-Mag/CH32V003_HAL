@@ -1,35 +1,9 @@
-#ifndef USART_LIB
-#define USART_LIB
+#ifndef USART1_SRC
+#define USART1_SRC
 
 
-#define REG_USART_STATR (*(volatile unsigned int*)0x40013800) // Registrador das flags
-#define REG_USART_DATAR (*(volatile unsigned int*)0x40013804) // Registrador do valor
-#define REG_USART_BRR   (*(volatile unsigned int*)0x40013808) // Registrador do baud rate
-#define REG_USART_CTRL1 (*(volatile unsigned int*)0x4001380C) // Registrador de controle 1
-#define REG_USART_CTRL2 (*(volatile unsigned int*)0x40013810) // Registrador de controle 2
-#define REG_USART_CTRL3 (*(volatile unsigned int*)0x40013814) // Registrador de controle 3
-#define REG_USART_GPR   (*(volatile unsigned int*)0x40013818) // Registrador do prescaler e fusebits
+#include <Peripherics/inc/USART1.h>
 
-// CTRL 1 bits
-#define Odd           0x01
-#define Even          0x00
-
-#define No_Parity     0xff
-
-#define _8bits_lenght 0
-#define _9bits_lenght 1
-#define Tx_EN_Bit     3
-#define Rx_EN_Bit     2  
-
-// CTRL 2 bits
-
-#define _1Stop_bit 0x00
-#define _2Stop_bit 0x02
-#define CLK_EN_bit  11
-#define CLK_POL_bit 10
-
-extern unsigned int SYSCLK;
-extern unsigned int HCLK;
 
 
 /**
@@ -47,7 +21,7 @@ unsigned int BaudRate_Calc(unsigned int pclk, unsigned int baud)
     // Parte inteira (mantissa)
     unsigned int mantissa = (unsigned int)usartdiv;
 
-    // Parte fracion¨¢ria (x16, arredondada)
+    // Parte fracion§Ú§Ória (x16, arredondada)
     unsigned int fraction = (unsigned int)((usartdiv - mantissa) * 16.0);
 
     // Ajuste de overflow da fracao
@@ -103,7 +77,7 @@ void Init_USART1(int BaudRate,int Parity,int Stop_bits, int DataLenght){
 
 void Write_USART1(char Data){
     while(!((REG_USART_STATR >> 7) & 0x01)); // espera TXE
-    REG_USART_DATAR = ((uint16_t)(Data & 0x00FF));
+    REG_USART_DATAR = ((unsigned int)(Data & (unsigned int)0x00FFU));
    // REG_USART_CTRL1 |= (1<< Tx_EN_Bit);
 }
 
@@ -139,3 +113,5 @@ void Print_USART1(char* String){
 
 
 #endif //USART_LIB
+
+

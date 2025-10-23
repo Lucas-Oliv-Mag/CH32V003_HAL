@@ -1,8 +1,3 @@
-#define REG_ADC_CTRL1  (*(volatile uint32_t*)0x40012404) // Define o endere?o de memoria do registrador ADC_CTRL1
-#define REG_ADC_CTRL2  (*(volatile uint32_t*)0x40012408) // Define o endere?o de memoria do registrador ADC_CTRL2
-#define REG_ADC_RDATAR (*(volatile uint32_t*)0x4001244C) // Define o endere?o de memoria do registrador de resultado do Rule group
-#define REG_ADC_RSQR3  (*(volatile uint32_t*)0x40012434) // 
-#define REG_ADC_STATR  (*(volatile uint32_t*)0x40012400) // 
 
 
 

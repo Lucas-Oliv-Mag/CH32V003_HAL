@@ -1,3 +1,6 @@
+#ifndef HD44780_INC
+#define HD44780_INC
+
 #define CMD    0
 #define DATA   1
 
@@ -212,3 +215,5 @@ void Print_LCD(unsigned char Row,unsigned char dot, char *String){
     }
 
 }
+
+#endif

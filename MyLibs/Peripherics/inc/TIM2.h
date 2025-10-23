@@ -14,24 +14,6 @@
 
 #define TIM2_LIB
 
-
-#define _TIM2_BASE 0x40000000
-
-// ___________ Registradores de configuracao _________//
-#define REG_TIM2_CTRL1      *((volatile unsigned int*)(_TIM2_BASE + 0x00)) // Configuracoes gerais 1
-#define REG_TIM2_CTRL2      *((volatile unsigned int*)(_TIM2_BASE + 0x04)) // Configuracoes gerais 2
-
-#define REG_TIM2_SMCFGR     *((volatile unsigned int*)(_TIM2_BASE + 0x08))
-#define REG_TIM2_DMAINTENR  *((volatile unsigned int*)(_TIM2_BASE + 0x0C)) // Configura o DMA
-#define REG_TIM2_PSC        *((volatile unsigned int*)(_TIM2_BASE + 0x28)) // Registrador de prescaler que divide o clock para o perif¨¦rico.
-
-// __________Registradores funcionais ______________//
-
-#define REG_TIM2_INTFR      *((volatile unsigned int*)(_TIM2_BASE + 0x10)) // Exibe as interrupcoes.
-#define REG_TIM2_CNT        *((volatile unsigned int*)(_TIM2_BASE + 0x24)) // Registrador de contagem.
-#define REG_TIM2_SWEVGR     *((volatile unsigned int*)(_TIM2_BASE + 0x24)) // Registrador de geracao de eventos.
-#define REG_TIM2_ATRLR      *((volatile unsigned int*)(_TIM2_BASE + 0x2C)) // Registrador de Auto Reload, define o teto maximo de contagem.
-
 // ______________ SETPOINTS _______________________//
 #define MAX_PERIOD_TIM2_S  175 // Maxima temporiza??o permitida para o TIM2 em segundos.
 #define MAX_PERIOD_TIM2_mS 999 // Maxima temporiza??o permitida para o TIM2 em milisegundos.

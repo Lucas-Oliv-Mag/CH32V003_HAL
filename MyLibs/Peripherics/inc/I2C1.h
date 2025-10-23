@@ -30,20 +30,12 @@ Escrevemos o endere?o do slave, junto ao 8°„Bit, que descreve a fun??o.
 #ifndef I2C1_LIB
 #define I2C1_LIB
 
-#define REG_I2C_CTLR1   (*(volatile unsigned int*)0x40005400)  // I2C control register 1 0x0000
-#define REG_I2C_CTLR2   (*(volatile unsigned int*)0x40005404) //I2C control register 2 0x0000
-#define REG_I2C_OADDR1  (*(volatile unsigned int*)0x40005408) //I2C address register 1 0x0000
-#define REG_I2C_OADDR2  (*(volatile unsigned int*)0x4000540C) //I2C address register 2 0x0000
-#define REG_I2C_DATAR   (*(volatile unsigned int*)0x40005410)  //I2C data register 0x0000
-#define REG_I2C_STAR1   (*(volatile unsigned int*)0x40005414)  //I2C status register 1 0x0000
-#define REG_I2C_STAR2   (*(volatile unsigned int*)0x40005418)  //I2C status register 2 0x0000
-#define REG_I2C_CKCFGR  (*(volatile unsigned int*)0x4000541C) //I2C clock register 0x0000
 
-
-
+#include <Core/Lib_config.h>
 
 // MSB First, LSB after.
 
+typedef enum SERIAL_BUS_MODE I2C_t;
 
 unsigned int Init_I2C1(I2C_t Mode){
 

@@ -22,11 +22,6 @@ ________________________________________________________________________________
 #ifndef SYSTICK_H
 #define SYSTICK_H
 
-// Defini??o dos registradores do SYSTICK Timer.
-#define REG_STK_CTRL  (*(volatile unsigned int*)0xE000F000)          // Configura??o do Systick.
-#define REG_STK_SR    (*(volatile const unsigned int*)0xE000F004) // Somente leitura do status discreto da contagem.
-#define REG_STK_CNTL  (*(volatile unsigned int*)0xE000F008)       // Valor atual do registrador de contagem.
-#define REG_STK_CMPLR (*(volatile unsigned int*)0xE000F010)      // Valor de setpoint para estouro do systick.
 
 
 // Bits do STK_CTRL - Registrador de configura??o.

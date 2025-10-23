@@ -1,28 +1,29 @@
-#ifndef Mylibs
-#define Mylibs
+#ifndef HAL_MASTER_HEADER
+#define HAL_MASTER_HEADER
 
+#include "ch32v00x.h" // POR ENQUANTO, FUTURAMENTE N?O SER? NESCESSARIA.
 
-#include "ch32v00x.h"
+#include <Core/Registers.h> // Define todos os registradores de hardware da biblioteca.
+#include <Core/Lib_config.h> // Variaveis globais.
 
-#include <Utilitys/Utilitys.h>
-#include <Utilitys/Lib_config.h>
+#include <Utilitys/Utilitys.h> // Fun??es auxiliares de manipula??o de dados.
 
 // --- Perifericos basicos --- //
-#include <Drivers/RCC.h>
-#include <Drivers/GPIOs.h>
+#include <Peripherics/inc/RCC.h>
+#include <Peripherics/inc/GPIOs.h>
 
 // --- Perifericos gerais --- //
-#include <Drivers/USART1.h>
-#include <Drivers/I2C1.h>
-#include <Drivers/Systick.h>
-#include <Drivers/TIM2.h>
-#include <Drivers/ADC.h>
+#include <Peripherics/inc/USART1.h>
+#include <Peripherics/inc/I2C1.h>
+#include <Peripherics/inc/Systick.h>
+#include <Peripherics/inc/TIM2.h>
+#include <Peripherics/inc/ADC.h>
+
 // --- Drivers para dispositivos externos --- //
-#include <Drivers/74HC595.h>
-#include <Drivers/HD4478.h>
+
+#include <Drivers/Drivers.h>
 
 
 
 
-
-#endif // Fim da lib
+#endif // Fim da lib HAL_MASTER_HEADER
