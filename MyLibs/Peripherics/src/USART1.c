@@ -5,7 +5,6 @@
 #include <Peripherics/inc/USART1.h>
 
 
-
 /**
  * @brief Calcula o valor do registrador responsavel por gerar o BaudRate do perif?rico USART.
  * 
@@ -36,7 +35,7 @@ unsigned int BaudRate_Calc(unsigned int pclk, unsigned int baud)
 
 
 /**
- * @brief Inicia o perif?rico UART no modo de transmiss?o assincrona, TX + RX.
+ * @brief Inicia o perif?rico UART no modo de transmiss?o assincrona, TX + RX, nos pinos 5 e 6 do portD.
  * 
  * @param BaudRate A Velocidade desejada em bits por segundo.
  * @param Parity   
@@ -46,19 +45,11 @@ unsigned int BaudRate_Calc(unsigned int pclk, unsigned int baud)
 void Init_USART1(int BaudRate,int Parity,int Stop_bits, int DataLenght){
 
     // Liga o clock USART1 | port D | AFIO
-    REG_RCC_APB2PCENR |= (1<<14) | (1<<5) | (1<<0);
+    //REG_RCC_APB2PCENR |= (1<<14) | (1<<5) | (1<<0);
 
-    // Reset USART1
-    REG_RCC_APB2PRSTR |=  (1<<14);
-    REG_RCC_APB2PRSTR &= ~(1<<14);
-  
-    // Reseta o PORT D
-    REG_RCC_APB2PRSTR |=  (1<<5);
-    REG_RCC_APB2PRSTR &= ~(1<<5);
-
-    // Reseta o o AFIO
-    REG_RCC_APB2PRSTR |=  (1<<0);
-    REG_RCC_APB2PRSTR &= ~(1<<0);
+    Peripheral_clock_enable(USART1_Peripheral);
+    Peripheral_clock_enable(GPIOD_Peripheral);
+    Peripheral_clock_enable(AFIO_Peripheral);
 
     Pin_set(PORTD,5,Mult_push_pull,_50MHz);// Configura PD5 (TX) como Alternate Function Push-Pull (50 MHz)
 
@@ -75,6 +66,11 @@ void Init_USART1(int BaudRate,int Parity,int Stop_bits, int DataLenght){
 }
 
 
+/**
+ * @brief Assim que o barramento estiver livre, envia Data para a saida serial
+ * 
+ * @param Data 
+ */
 void Write_USART1(char Data){
     while(!((REG_USART_STATR >> 7) & 0x01)); // espera TXE
     REG_USART_DATAR = ((unsigned int)(Data & (unsigned int)0x00FFU));
@@ -82,7 +78,11 @@ void Write_USART1(char Data){
 }
 
 
-
+/**
+ * @brief Preocura por algum novo dado na serial ate ela ser lida
+ * 
+ * @return char 
+ */
 char Receive_USART1(){
     
     do {
@@ -96,7 +96,11 @@ char Receive_USART1(){
 }
 
 
-
+/**
+ * @brief Escreve a String na uart.
+ * 
+ * @param String 
+ */
 void Print_USART1(char* String){
 
     unsigned int tempreg = String_counter(String);
@@ -109,6 +113,16 @@ void Print_USART1(char* String){
 
 }
 
+/**
+ * @brief Desliga o modulo USART e o reinicia.
+ * 
+ */
+void Stop_USART1(){
+
+    Peripheral_clock_stop(USART1_Peripheral);
+    Peripheral_reset(USART1_Peripheral);
+
+}
 
 
 

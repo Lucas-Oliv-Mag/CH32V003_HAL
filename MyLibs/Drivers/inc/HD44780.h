@@ -140,7 +140,14 @@ void LCD_Write_8b(int Type, char Data){
 }
 
 
-
+/**
+ * @brief Carrega a configura?ao desejada no LCD.
+ * 
+ * @param Register Qual registrador do HD44780 dever? ser alterado.
+ * @param config1  
+ * @param config2 
+ * @param config3 
+ */
 void LCD_New_Config(unsigned char Register, unsigned char config1,unsigned char config2, unsigned char config3){
 
     unsigned char Aux = 0;
@@ -175,8 +182,14 @@ void LCD_Custom_Init_8b(){
 
 }
 
-void LCD_Init_8b(){
+void LCD_Init_8b(unsigned int Register_Select, unsigned int Enable_pin, GPIO_t PORT_FOR_ALL){
 
+    LCD.EN = Enable_pin;
+    LCD.RS = Register_Select;
+
+    LCD.EN_Port = PORT_FOR_ALL;
+    LCD.RS_Port = PORT_FOR_ALL;
+    
     LCD_Write_8b(CMD,0x38); LCD.Function_set_reg = 0x38;    // 2 linhas, 8 bits, 5 x 8 dots
     Delay_Us(5);
     LCD_Write_8b(CMD,0x0C); LCD.Display_Control_reg = 0x0C; // display ligado, cursor off, blink off

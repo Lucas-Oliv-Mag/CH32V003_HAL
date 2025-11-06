@@ -4,7 +4,8 @@
 #include <Core/Lib_config.h>
 #include <Core/Registers.h>
 #include <Peripherics/inc/GPIOs.h> 
-#include <Utilitys/Utilitys.h>   
+#include <Utilitys/Utilitys.h>  
+#include <Peripherics/inc/RCC.h>
 
 
 // CTRL 1 bits

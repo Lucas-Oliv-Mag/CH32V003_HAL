@@ -48,14 +48,14 @@
 //____________________________________________________//
 
 //_______________ I2C1 REGISTERS ____________________//
-#define REG_I2C_CTLR1   (*(volatile unsigned int*)0x40005400)  // I2C control register 1 0x0000
-#define REG_I2C_CTLR2   (*(volatile unsigned int*)0x40005404) //I2C control register 2 0x0000
-#define REG_I2C_OADDR1  (*(volatile unsigned int*)0x40005408) //I2C address register 1 0x0000
-#define REG_I2C_OADDR2  (*(volatile unsigned int*)0x4000540C) //I2C address register 2 0x0000
-#define REG_I2C_DATAR   (*(volatile unsigned int*)0x40005410)  //I2C data register 0x0000
-#define REG_I2C_STAR1   (*(volatile unsigned int*)0x40005414)  //I2C status register 1 0x0000
-#define REG_I2C_STAR2   (*(volatile unsigned int*)0x40005418)  //I2C status register 2 0x0000
-#define REG_I2C_CKCFGR  (*(volatile unsigned int*)0x4000541C) //I2C clock register 0x0000
+#define REG_I2C1_CTLR1   (*(volatile unsigned int*)0x40005400)  // I2C control register 1 0x0000
+#define REG_I2C1_CTLR2   (*(volatile unsigned int*)0x40005404) //I2C control register 2 0x0000
+#define REG_I2C1_OADDR1  (*(volatile unsigned int*)0x40005408) //I2C address register 1 0x0000
+#define REG_I2C1_OADDR2  (*(volatile unsigned int*)0x4000540C) //I2C address register 2 0x0000
+#define REG_I2C1_DATAR   (*(volatile unsigned int*)0x40005410)  //I2C data register 0x0000
+#define REG_I2C1_STAR1   (*(volatile unsigned int*)0x40005414)  //I2C status register 1 0x0000
+#define REG_I2C1_STAR2   (*(volatile unsigned int*)0x40005418)  //I2C status register 2 0x0000
+#define REG_I2C1_CKCFGR  (*(volatile unsigned int*)0x4000541C) //I2C clock register 0x0000
 
 // __________________________________________________//
 
@@ -78,11 +78,11 @@ com os offsets, por favor nao alterar.
 
 
 // __________________ ADC REGISTERS _________________________//
-#define REG_ADC_CTRL1  (*(volatile uint32_t*)0x40012404) // Define o endere?o de memoria do registrador ADC_CTRL1
-#define REG_ADC_CTRL2  (*(volatile uint32_t*)0x40012408) // Define o endere?o de memoria do registrador ADC_CTRL2
-#define REG_ADC_RDATAR (*(volatile uint32_t*)0x4001244C) // Define o endere?o de memoria do registrador de resultado do Rule group
-#define REG_ADC_RSQR3  (*(volatile uint32_t*)0x40012434) // 
-#define REG_ADC_STATR  (*(volatile uint32_t*)0x40012400) // 
+#define REG_ADC_CTRL1  (*(volatile unsigned int*)0x40012404) // Define o endere?o de memoria do registrador ADC_CTRL1
+#define REG_ADC_CTRL2  (*(volatile unsigned int*)0x40012408) // Define o endere?o de memoria do registrador ADC_CTRL2
+#define REG_ADC_RDATAR (*(volatile unsigned int*)0x4001244C) // Define o endere?o de memoria do registrador de resultado do Rule group
+#define REG_ADC_RSQR3  (*(volatile unsigned int*)0x40012434) // 
+#define REG_ADC_STATR  (*(volatile unsigned int*)0x40012400) // 
 
 
 

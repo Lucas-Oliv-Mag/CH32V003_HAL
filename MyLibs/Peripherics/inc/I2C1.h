@@ -1,10 +1,19 @@
+#ifndef I2C1_inc
+#define I2C1_inc
+
+#include <Core/Registers.h>
+#include <Core/Lib_config.h>
+#include <Peripherics/inc/GPIOs.h>
+
+
+
 
 /*
 ___________________________________________________________________________________________________________________________________
 
     CRIADO POR: LUCAS O.M  | Data: 21/10/2025   | Brasil - SP
 
-    TiTULO: Lib para utilizar o m¨®dulo I2C o CH32V0003
+    TiTULO: Lib para utilizar o m§Ú§àdulo I2C o CH32V0003
 
     DESC: 
 
@@ -14,74 +23,29 @@ ________________________________________________________________________________
 
 */
 
-/*
 
+// Bits de controle
 
+#define I2C1_ST 8
+#define I2C1_PE 0
 
-Basicamente configuramos o clock do perif¨¦rico,
+#define I2C1_FS 15
 
-Escrevemos o endere?o do slave, junto ao 8¡ãBit, que descreve a fun??o.
+#define I2C1_ACK 10
 
-
-
-*/
-
-
-#ifndef I2C1_LIB
-#define I2C1_LIB
-
-
-#include <Core/Lib_config.h>
-
-// MSB First, LSB after.
+extern unsigned int PCLK;
+extern unsigned int SYSCLK;
 
 typedef enum SERIAL_BUS_MODE I2C_t;
 
-unsigned int Init_I2C1(I2C_t Mode){
+unsigned int Init_I2C1(I2C_t Mode);
+
+void Stop_I2C1();
+
+char Read_I2C1(unsigned int Adress, unsigned int reg);
 
 
-
-
-    switch (Mode) {
-
-        case Master: break;
-
-
-
-
-
-        case Slave:  break;
-
-        default: return 1;
-
-    }
-    return 0;
-}
-
-
-void Stop_I2C1(){
-
-
-
-}
-
-
-
-void Write_I2C1(){
-
-
-
-}
-
-char Read_I2C1(unsigned int Adress, unsigned int reg){
-
-
-
-    //return data ;
-}
-
-
-
+// MSB First, LSB after.
 
 
 

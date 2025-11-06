@@ -29,7 +29,7 @@ unsigned int Read_Pin(GPIO_t Port, unsigned int pin){
 }
 
 
-unsigned int GPIO_set(GPIO_t Port, unsigned char Pins, Pin_t Type){ // HIGH = PUSH/PULL OUTUPUT, LOW = FLOATING INPUT
+unsigned int PORT_set(GPIO_t Port, unsigned char Pins, Pin_t Type){ // HIGH = PUSH/PULL OUTUPUT, LOW = FLOATING INPUT
 
    unsigned int i, Shift;
    volatile unsigned int* GPIO = (volatile unsigned int*)Port;

@@ -26,7 +26,7 @@ struct _74HC595{ // Cria a definição da estrutura de inicialização do shiftr
 
 
 /**
- * @brief Envia ao ShiftRegister o valor de data, primeiro o LSB.
+ * @brief Envia ao ShiftRegister o valor de data, primeiro o MSB
  * 
  * @param data Char de 8 bits
  */
@@ -38,7 +38,7 @@ void Write_74HC595(unsigned char data){
    Write_Pin(ShiftReg.SH_Port,ShiftReg.SH_Pin,LOW); // 
 
 
-   for(unsigned int i=7 ;i >= 0; i--){// Repete para cada bit de data
+   for(unsigned int i=7 ;i > 0; i--){// Repete para cada bit de data
    Write_Pin(ShiftReg.Data_Port,ShiftReg.Data_Pin, (data>>i) & 0x1);// Envia o I-ижsimo bit de data (LSB first)
    Write_Pin(ShiftReg.SH_Port,ShiftReg.SH_Pin,HIGH); // Envia o clock
    Write_Pin(ShiftReg.SH_Port,ShiftReg.SH_Pin,LOW);
@@ -51,7 +51,11 @@ void Write_74HC595(unsigned char data){
   // Envia (LSB -> MSB).
 }
 
-
+/**
+ * @brief Envia ao ShifterRegister o valor de data, primeiro o LSB
+ * 
+ * @param data Char de 8 bits.
+ */
 void Write_74HC595_LSB_First(unsigned char data){
   unsigned int i;
 
@@ -81,7 +85,7 @@ void Write_74HC595_LSB_First(unsigned char data){
 unsigned int _74HC595_Init(unsigned int ST_Pin, unsigned int Data_Pin, unsigned int SH_Pin,GPIO_t PORT_FOR_ALL){
 
     if(ST_Pin > 7 || Data_Pin >7 || SH_Pin >7){return 1;}
-    if(PORT_FOR_ALL > 0x40011400U || PORT_FOR_ALL <0x40010800U){return 1;}// Retorna ERRO, pois nao foi possivel configurar os pinos do 74HC595
+    //if(PORT_FOR_ALL > 0x40011400U || PORT_FOR_ALL <0x40010800U){return 1;}// Retorna ERRO, pois nao foi possivel configurar os pinos do 74HC595
 
      ShiftReg.ST_Pin = ST_Pin;      // Configura os pinos que
      ShiftReg.Data_Pin = Data_Pin; //  Irao realizer interface

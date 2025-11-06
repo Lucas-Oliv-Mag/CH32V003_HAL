@@ -92,7 +92,7 @@ unsigned int Read_Pin(GPIO_t Port, unsigned int pin);
  * @param Type Configuracao de que tipo serao confingurados os pinos.
  * @return Retorna TRUE em caso de erro, e FALSE quando bem sucedido.
  */
-unsigned int GPIO_set(GPIO_t Port, unsigned char Pins, Pin_t Type);
+unsigned int PORT_set(GPIO_t Port, unsigned char Pins, Pin_t Type);
 
 /**
  * @brief Alterará o estado do pino terminal informado.
