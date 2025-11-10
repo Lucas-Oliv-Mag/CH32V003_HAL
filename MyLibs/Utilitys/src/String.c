@@ -5,16 +5,16 @@
 #include <Utilitys/inc/String.h>
 
 /**
- * @brief Conta a quantidade de caracteres em uma string.
+ * @brief Conta a quantidade de caracteres validos em uma string.
  * 
  * @param Str Indique a string ao qual deve ser contada
- * @return unsigned int  retorna a quantidade de caracteres.
+ * @return unsigned int quantidade de caracteres (ignora o terminador \0).
  */
 unsigned int String_counter(char *Str){
 
     char *P = Str;
 
-    while(*P != 0){
+    while(*P != '\0'){
      P++;
     }
 

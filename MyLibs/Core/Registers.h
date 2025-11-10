@@ -11,7 +11,35 @@
 #define REG_RCC_APB2PCENR   (*(volatile unsigned int*)0x40021018) //PB2 peripheral clock enable register   - Reset value: 0x00000000
 #define REG_RCC_APB1PCENR   (*(volatile unsigned int*)0x4002101C) //PB1 peripheral clock enable register   - Reset value: 0x00000000
 #define REG_RCC_RSTSCKR     (*(volatile unsigned int*)0x40021024)// Control/status register                - Reset value: 0x0C000000
-//______________________________________________________//
+//_____________PFIC REGISTERS ______________________________//
+
+#define PFIC_BASE 0xE000E000
+
+#define REG_PFIC_ISR1      (*(volatile unsigned int*)(PFIC_BASE + 0x00)) //PFIC interrupt enable status register 1 0x0000000C
+#define REG_RPFIC_ISR2     (*(volatile unsigned int*)(PFIC_BASE + 0x04)) //PFIC interrupt enable status register 2 0x00000000
+#define REG_PFIC_IPR1      (*(volatile unsigned int*)(PFIC_BASE + 0x20)) //PFIC interrupt pending status register 1 0x00000000
+#define REG_PFIC_IPR2      (*(volatile unsigned int*)(PFIC_BASE + 0x24)) //PFIC interrupt pending status register 2 0x00000000
+#define REG_PFIC_ITHRESDR  (*(volatile unsigned int*)(PFIC_BASE + 0x40))//PFIC interrupt priority threshold configuration register 0x00000000
+#define REG_PFIC_CFGR      (*(volatile unsigned int*)(PFIC_BASE + 0x48)) //PFIC interrupt configuration register 0x00000000
+#define REG_PFIC_GISR      (*(volatile unsigned int*)(PFIC_BASE + 0x4C)) //PFIC interrupt global status register 0x00000000
+#define REG_PFIC_VTFIDR    (*(volatile unsigned int*)(PFIC_BASE + 0x50)) //PFIC VTF interrupt ID configuration register 0x00000000
+#define REG_PFIC_VTFADDRR0 (*(volatile unsigned int*)(PFIC_BASE + 0x60)) // PFIC VTF interrupt 0 offset address register 0x00000000
+#define REG_PFIC_VTFADDRR1 (*(volatile unsigned int*)(PFIC_BASE + 0x64)) //PFIC VTF interrupt 1 offset address register 0x00000000
+#define REG_PFIC_IENR1     (*(volatile unsigned int*)(PFIC_BASE + 0x100)) //PFIC interrupt enable setting register 1 0x00000000
+#define REG_PFIC_IENR2     (*(volatile unsigned int*)(PFIC_BASE + 0x104)) //PFIC interrupt enable setting register 2 0x00000000
+#define REG_PFIC_IRER1     (*(volatile unsigned int*)(PFIC_BASE + 0x180)) //PFIC interrupt enable clear register 1 0x00000000
+#define REG_PFIC_IRER2     (*(volatile unsigned int*)(PFIC_BASE + 0x184)) //PFIC interrupt enable clear register 2 0x00000000
+#define REG_PFIC_IPSR1     (*(volatile unsigned int*)(PFIC_BASE + 0x200)) //PFIC interrupt pending setting register 1 0x00000000
+#define REG_PFIC_IPSR2     (*(volatile unsigned int*)(PFIC_BASE + 0x204)) //PFIC interrupt pending setting register 2 0x00000000
+#define REG_PFIC_IPRR1     (*(volatile unsigned int*)(PFIC_BASE + 0x280)) //PFIC interrupt pending clear register 1 0x00000000
+#define REG_PFIC_IPRR2     (*(volatile unsigned int*)(PFIC_BASE + 0x284)) //PFIC interrupt pending clear register 2 0x00000000
+#define REG_PFIC_IACTR1    (*(volatile unsigned int*)(PFIC_BASE + 0x300)) //PFIC interrupt activation status register 
+#define REG_PFIC_IACTR2    (*(volatile unsigned int*)(PFIC_BASE + 0x304)) //PFIC interrupt activation status register 
+#define PFIC_IPRIORx_BASE  ( (volatile unsigned int*)(PFIC_BASE + 0x400)) //PFIC interrupt priority configuration register 0x00000000
+#define PFIC_IPRIORx_TOP   (*(volatile unsigned int*)(PFIC_BASE + 0x4FF))
+#define REG_PFIC_SCTLR     (*(volatile unsigned int*)(PFIC_BASE + 0xD10)) //PFIC system control register 0x00000000
+// _____________________________________________________//
+
 
 //_______________ SYSTICK Timer Registradores  ________//
 #define REG_STK_CTRL  (*(volatile unsigned int*)0xE000F000)          // Configura??o do Systick.
@@ -19,6 +47,15 @@
 #define REG_STK_CNTL  (*(volatile unsigned int*)0xE000F008)       // Valor atual do registrador de contagem.
 #define REG_STK_CMPLR (*(volatile unsigned int*)0xE000F010)      // Valor de setpoint para estouro do systick.
 // _____________________________________________________//
+
+// _________ Registradores do EXTI _____________________//
+#define REG_EXTI_INTENR (*(volatile unsigned int *)0x40010400) //Interrupt enable register 0x00000000
+#define REG_EXTI_EVENR  (*(volatile unsigned int *)0x40010404) //Event enable register 0x00000000
+#define REG_EXTI_RTENR  (*(volatile unsigned int *)0x40010408) //Rising edge trigger enable register 0x00000000
+#define REG_EXTI_FTENR  (*(volatile unsigned int *)0x4001040C) //Falling edge trigger enable register 0x00000000
+#define REG_EXTI_SWIEVR (*(volatile unsigned int *)0x40010410) //Soft interrupt event register 0x00000000
+#define REG_EXTI_INTFR  (*(volatile unsigned int *)0x40010414) //Interrupt flag register 0x0000XXXX
+
 
 // ___________ TIM2 REGISTRADORES _____________________//
 #define _TIM2_BASE 0x40000000
@@ -74,6 +111,12 @@ com os offsets, por favor nao alterar.
 #define _BSRH   0x10U
 #define _BCR    0x14U
 #define _LCKR   0x18U
+// ______________ AFIO REGISTERS ______________________________//
+
+#define REG_AFIO_PCFR1  (*(volatile unsigned int*)0x40010004) // Registrador de reapeamento
+#define REG_AFIO_EXTICR (*(volatile unsigned int*)0x40010008) // Registrador das interrupcoes externas.
+
+
 // ___________________________________________________________//
 
 

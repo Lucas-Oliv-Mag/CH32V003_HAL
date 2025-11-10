@@ -9,7 +9,6 @@ ________________________________________________________________________________
     DESC: Inicialização, configuração, operação das GPIOs, desde configurar um port inteiro, a manipular apenas um pino.
 
     - OBS: Tem dependencia direta da biblioteca
-
 ___________________________________________________________________________________________________________________________________
 
 */
