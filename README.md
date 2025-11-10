@@ -6,16 +6,19 @@ Assim abstraindo complexidades, diminuindo a curva de aprendizado de MCUs de 32B
 
  Atualmente comporta os seguintes periféricos:
 
-- Systick     (100%)
+- Systick     (10%)
 - USART1      (70%)
-- I2C1        (2%)
+- I2C1        (30%)
 - ADC         (5%)
 - GPIOs       (100%)
 - RCC         (100%)
+- PFIC        (80%)
+- EXTI        (90%)
 
 Também incluem bibliotecas para fazer interface com dispositivos externos como:
 
-- Display LCD - HD44780
-- ShiftRegister - 74HC595
+- Display LCD - HD44780 (100%)
+- ShiftRegister - 74HC595 (100%)
+- ADC I2C 16 bits - ADS1115 (20)%
   
 A documentação está em português por enquanto, posteriormente será refeita em inglês.
