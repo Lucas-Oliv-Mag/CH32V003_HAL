@@ -3,8 +3,10 @@
 
 #include <Core/Registers.h>
 #include <Core/Lib_config.h>
-#include <Peripherics/inc/GPIOs.h>
 #include <Utilitys/inc/String.h>
+#include <Peripherics/inc/GPIOs.h>
+#include <Peripherics/inc/RCC.h>
+#include <Peripherics/inc/PFIC.h>
 
 /*
 ___________________________________________________________________________________________________________________________________
@@ -46,7 +48,7 @@ ________________________________________________________________________________
 #define I2C1_ITBUFEN  10 // Habilita interrupcao pelos evento de buffer (Tx e Rx)
 #define I2C1_ITEVTEN   9 // Habilita interrupcao pelos eventos I2C
 #define I2C1_ITERREN   8 // Habilita interrupcao pelos erros I2C
-#define I2C1_FREQ  0
+#define I2C1_FREQ      0
 
 // bits do STATUS 1
 #define IC21_PECER 12 // Caso houver erro de PEC na recepcao de dados
@@ -99,6 +101,7 @@ I2C_msg_t Write_I2C1_polling(char Adress, char * Buffer);
 
 I2C_msg_t Write_I2C1(char Adress, char * Buffer, unsigned int Lenght_of_buffer);
 
+void I2C1_IRQ_Enable();
 
 // MSB First, LSB after.
 

@@ -14,21 +14,12 @@ ________________________________________________________________________________
 
 */
 
-/*
-
-
-Basicamente configuramos o clock do perif®¶rico,
-
-Escrevemos o endere?o do slave, junto ao 8°„Bit, que descreve a fun??o.
-
-*/
-
 
 #ifndef I2C1_src
 #define I2C1_src
 
 #include <Peripherics/inc/I2C1.h>
-#include <Peripherics/inc/RCC.h>
+
 
 
 // MSB First, LSB after.
@@ -62,12 +53,16 @@ unsigned int Init_I2C1_Master(){
     REG_I2C1_CKCFGR |= tempreg;// CKCFGR = CLock dos perifericos/( Velocidade desejada * 2)
     REG_I2C1_CKCFGR &= ~(1<<I2C1_FS); // Velocidade Standart
 
-    REG_I2C1_CTLR1 |= (1<<I2C1_ACK);
+    REG_I2C1_CTLR1 |= (1<<I2C1_ACK) | (1<<I2C1_NOSTR);
     REG_I2C1_CTLR1 |= (1<<I2C1_PE);
 
     return 0;
 }
 
+void I2C1_IRQ_Enable(){
+    REG_I2C1_CTLR2 |= (1<<I2C1_ITEVTEN) | (1<<I2C1_ITBUFEN);
+    IRQ_enable(I2C1_EV_IRQ);
+}
 
 void Stop_I2C1(){
 
@@ -139,13 +134,13 @@ char Read_I2C1(unsigned int Adress, unsigned int reg){
 }
 
 
-
 I2C_msg_t Write_I2C1(char Adress, char * Buffer, unsigned int Lenght_of_buffer){
 
     static unsigned int State = 0;
     static unsigned int Bytes;
     static unsigned int Lenght;
     static unsigned int Timeout;
+
 
     if(State == 0) {
         Timeout = 0U;
@@ -154,10 +149,11 @@ I2C_msg_t Write_I2C1(char Adress, char * Buffer, unsigned int Lenght_of_buffer){
     }
 
     switch (State) {
-
+        
     case 0: // Ativar barramento i2c
         REG_I2C1_CTLR1 |= (1<<I2C1_START); // Inicia trasmiss?o.
         State++;
+
     break;
 
     case 1:// Enviar endereco do Slave

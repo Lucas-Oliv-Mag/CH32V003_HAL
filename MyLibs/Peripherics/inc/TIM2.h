@@ -60,16 +60,12 @@ Uhz = CKL_INT/ PSC + 1
 //________________________________________________//
 
 
-unsigned int Cilic_TIM2(int Period, time_t Unidade){
+unsigned int Cilic_TIM2(int Period, Time_t Unidade){
 
 
-    REG_RCC_APB1PCENR  |= 0x01; // Liga o clock do TIM2.
-
-    REG_RCC_APB2PRSTR  |=  (1<<0); // Reseta o modulo TIM2
-    REG_RCC_APB2PRSTR  &= ~(1<<0); // Reseta o modulo TIM2
-
-    NVIC_EnableIRQ(TIM2_IRQn); // Liga a interrup??o do TIM2.   
-
+    Peripheral_clock_enable(TIM2_Peripheral);
+    Peripheral_reset(TIM2_Peripheral);
+    IRQ_enable(TIM2_IRQ);
 
     REG_TIM2_CTRL2 &= ~0x7; // Define o clock do perif¨¦rico para o clock interno.
     REG_TIM2_CTRL2 &= ~TIM2_ECE_bit; // Define para modo interno.

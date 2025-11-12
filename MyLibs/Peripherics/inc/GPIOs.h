@@ -100,7 +100,7 @@ unsigned int PORT_set(GPIO_t Port, unsigned char Pins, Pin_t Type);
  * @param pin  O numero do pino, Ex: 1~7.
  * @param VALUE O estado lógico que o pino deve estar, Ex: HIGH
  */
-void Write_Pin(GPIO_t Port, unsigned char pin, int VALUE);
+void Write_Pin(GPIO_t Port, unsigned char pin, unsigned int VALUE);
 
 
 /**

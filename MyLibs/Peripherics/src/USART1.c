@@ -125,6 +125,18 @@ void Stop_USART1(){
 }
 
 
+/**
+ * @brief Habilita as interrupcoes do modulo USART1
+ * 
+ */
+void USART1_IRQ_Enable(){
+
+    
+    //IRQ_enable(USART1_IRQ);
+
+
+
+}
 
 #endif //USART_LIB
 

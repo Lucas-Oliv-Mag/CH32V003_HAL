@@ -67,10 +67,11 @@ void String_clear(char* String){
 
     for(unsigned int i = 0; i < lenght; i ++){
 
-
         *(String + i) = ' ';
 
     }
+
+    *(String + lenght) = '\0';
 
 }
 
@@ -85,13 +86,13 @@ void String_clear(char* String){
  */
 void String_set(char* Container, char* String){
 
-    String_clear(Container);
-
     unsigned int Lenght = String_counter(String);
+
+    String_clear(Container);
 
     for(unsigned int i = 0; i < Lenght ; i++){
 
-       *(Container+1) = *(String+i);
+       *(Container+i) = *(String+i);
     
     }
 
@@ -104,13 +105,35 @@ void String_set(char* Container, char* String){
  * @param Buffer O Buffer de chars que deseja limpar.
  * @return int retorna zero caso consiga limpar.
  */
-int Clear_buffer(void* Buffer){
+void Clear_Array(void* Buffer, unsigned int Buffer_lenght){
     
-    for( char * temp = Buffer; *temp != '\n'; temp ++)
+    for( unsigned int temp = 0x00U; temp < Buffer_lenght; temp ++){
 
-        *temp = 0x00; // Limpa o buffer com o valor NULL.
+        *(unsigned int*)Buffer = 0x00; // Limpa o buffer com o valor NULL.
     
-    return 0;
+    }
+}
+
+
+/**
+ * @brief  Escreve em Buffer_out, uma string que representa em binario o valor de Variable
+ * 
+ * @param Variable 
+ * @param Buffer_out Bits MSB impressos primeiro.
+ * @param Buffer_Lenght 
+ */
+void Bits_to_String(void* Variable, char* Buffer_out, unsigned int Buffer_Lenght){
+
+    unsigned int Aux = 0;
+
+    for(int i = Buffer_Lenght - 1; i >= 0x00; i--){
+
+        Buffer_out[Aux]  = ((*(unsigned int*)Variable>>i) & 0x01U) + '0';
+        Aux++;
+    }
+
+    Buffer_out[Buffer_Lenght] = '\0'; // Insere o terminador nulo, que indica o final da string.
+
 }
 
 #endif

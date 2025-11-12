@@ -53,13 +53,14 @@ unsigned int PORT_set(GPIO_t Port, unsigned char Pins, Pin_t Type){ // HIGH = PU
 }
 
 
-void Write_Pin(GPIO_t Port, unsigned char pin, int VALUE){
+void Write_Pin(GPIO_t Port, unsigned char pin, unsigned int VALUE){
 
    if(VALUE == HIGH){
-      (*(volatile unsigned int*)(Port + _BSRH))  = 1<<pin;
+      (*(volatile unsigned int*)(Port + _BSRH)) |= 1<<pin;
    }else{
-      (*(volatile unsigned int*)(Port + _BSRH)) = 1<<(pin + 16);
+      (*(volatile unsigned int*)(Port + _BSRH)) |= 1<<(pin + 16);
    }  
+   
 }
 
 

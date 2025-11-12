@@ -9,4 +9,7 @@ extern unsigned int PCLK; // Clock dos perifericos, SYSCKL depois do HPRE, em He
 
 enum SERIAL_BUS_MODE {Master, Slave};
 
+#define TRUE  0X01U
+#define FALSE 0x00U
+
 #endif

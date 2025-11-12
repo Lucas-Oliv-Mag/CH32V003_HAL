@@ -5,10 +5,7 @@
 #include <Peripherics/inc/Systick.h>
 
 
-
 extern unsigned int SYSCLK, PCLK;
-
-
 
 /**
  * @brief Configura o timer systick para gerar interrup??o ciclicamente, pelo periodo passado
@@ -20,14 +17,12 @@ extern unsigned int SYSCLK, PCLK;
 unsigned int init_Systick_ciclic(unsigned int Period, Time_t Unit){
 
 
-   
-
     REG_STK_CTRL |= (1<<STCKL); // Define o clock do contador para SYSCKL
 
-    REG_STK_CMPLR = 0x1000000; //(SYSCLK/1000000) * (Period * Unit);// Calcula o estouro
+    REG_STK_CMPLR = 0x1000000U; //(SYSCLK/1000000) * (Period * Unit);// Calcula o estouro
 
     REG_STK_CTRL |= (1<<STIE) | (1<<STE) | (1<<STRE); // Habilita a interrupcao, o ativamento ciclico.
-    REG_STK_CNTL = (unsigned int)0x00;               // Limpa a contagem atual, zerando a contagem.
+    REG_STK_CNTL = (unsigned int)0x00U;               // Limpa a contagem atual, zerando a contagem.
 
 
     return 0; // Caso tudo oK.
