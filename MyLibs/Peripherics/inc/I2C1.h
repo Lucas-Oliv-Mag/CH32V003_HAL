@@ -25,7 +25,7 @@ ________________________________________________________________________________
 
 
 // Bits do CTRL1
-
+#define I2C1_TIMEOUT_LIMIT 400000U
 
 #define I2C1_FS 15 // Seleciona velocidade standard 100Khz (0x00), ou Fast 400Khz (0x01)
 
@@ -83,6 +83,7 @@ extern unsigned int SYSCLK;
 typedef enum SERIAL_BUS_MODE I2C_t;
 
 typedef enum I2C_MSG {
+    BUS_ERROR, // Quando o propio modulo I2C da timeout
     NO_ERROR, // Mensagem enviada com sucesso
     SLAVE_NON_ACK, // Dispositivo slave nao confirmou a mensagem (No acknowledge)
     SLAVE_NON_ADRR,// Dispositivo slave nao respondeu a chama de endereco (No Acknowledge)
@@ -95,9 +96,9 @@ unsigned int Init_I2C1_Master();
 
 void Stop_I2C1();
 
-char Read_I2C1(unsigned int Adress, unsigned int reg);
+I2C_msg_t Read_I2C1(unsigned int Adress, unsigned int Read_Sequence[], unsigned int Lenght_of_buffer,unsigned int Output_buffer[] ,unsigned int Bytes_to_read);
 
-I2C_msg_t Write_I2C1_polling(char Adress, char * Buffer);
+I2C_msg_t Write_I2C1_polling(char Adress, char * Buffer, unsigned int Lenght); 
 
 I2C_msg_t Write_I2C1(char Adress, char * Buffer, unsigned int Lenght_of_buffer);
 

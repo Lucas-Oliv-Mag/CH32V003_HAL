@@ -2,8 +2,9 @@
 #define DRIVERS_HEADER
 
 
-#include <Drivers/inc/74HC595.h>
-#include <Drivers/inc/HD44780.h>
+//#include <Drivers/inc/74HC595.h>
+#include <Drivers/inc/ADS1115.h>
+//#include <Drivers/inc/HD44780.h> PRECISA SUBSTITUIR AS FUNCAO DE DELAY
 
 
 

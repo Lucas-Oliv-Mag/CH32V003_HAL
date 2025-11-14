@@ -1,4 +1,6 @@
-#ifndef HD44780_INC
+//#ifndef HD44780_INC
+
+#ifdef LIB_BLOQUADA_POR_ENQUANTO
 #define HD44780_INC
 
 #define CMD    0
