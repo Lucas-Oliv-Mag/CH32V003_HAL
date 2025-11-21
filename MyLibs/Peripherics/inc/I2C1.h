@@ -25,7 +25,7 @@ ________________________________________________________________________________
 
 
 // Bits do CTRL1
-#define I2C1_TIMEOUT_LIMIT 400000U
+#define I2C1_TIMEOUT_LIMIT 4200000000U
 
 #define I2C1_FS 15 // Seleciona velocidade standard 100Khz (0x00), ou Fast 400Khz (0x01)
 
@@ -98,9 +98,9 @@ void Stop_I2C1();
 
 I2C_msg_t Read_I2C1(unsigned int Adress, unsigned int Read_Sequence[], unsigned int Lenght_of_buffer,unsigned int Output_buffer[] ,unsigned int Bytes_to_read);
 
-I2C_msg_t Write_I2C1_polling(char Adress, char * Buffer, unsigned int Lenght); 
+I2C_msg_t Write_I2C1_polling(char Adress, unsigned int Buffer[], unsigned int Lenght); 
 
-I2C_msg_t Write_I2C1(char Adress, char * Buffer, unsigned int Lenght_of_buffer);
+I2C_msg_t Write_I2C1(char Adress, unsigned int Buffer[], unsigned int Lenght_of_buffer);
 
 void I2C1_IRQ_Enable();
 

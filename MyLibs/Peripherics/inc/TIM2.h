@@ -14,6 +14,11 @@
 
 #define TIM2_LIB
 
+#include <Core/Registers.h>
+#include <Peripherics/inc/RCC.h>
+#include <Peripherics/inc/Systick.h>
+#include <Peripherics/inc/PFIC.h>
+
 // ______________ SETPOINTS _______________________//
 #define MAX_PERIOD_TIM2_S  175 // Maxima temporiza??o permitida para o TIM2 em segundos.
 #define MAX_PERIOD_TIM2_mS 999 // Maxima temporiza??o permitida para o TIM2 em milisegundos.
@@ -44,13 +49,11 @@
 #define TIM2_UG_bit (1<<0) // Atualiza a geracao do evento "Update", so pode ser setado
 
 
+// __________ Bits do DMA __________________//
+
+#define TIM2_UIE_bit (1<<0) // Ativa as interrupcoes do TIM2
 /*
 
-
-Calculo do periodo de estourou "update" do tim 2
-
-
-Uhz = CKL_INT/ PSC + 1
 
 
 
@@ -60,84 +63,15 @@ Uhz = CKL_INT/ PSC + 1
 //________________________________________________//
 
 
-unsigned int Cilic_TIM2(int Period, Time_t Unidade){
+
+extern unsigned int PCLK, SYSCLK; 
 
 
-    Peripheral_clock_enable(TIM2_Peripheral);
-    Peripheral_reset(TIM2_Peripheral);
-    IRQ_enable(TIM2_IRQ);
-
-    REG_TIM2_CTRL2 &= ~0x7; // Define o clock do perif¨¦rico para o clock interno.
-    REG_TIM2_CTRL2 &= ~TIM2_ECE_bit; // Define para modo interno.
-
-    if(Period >= MAX_PERIOD_TIM2_uS || Period < 1){ return 1;}
-    
-    switch(Unidade){
-
-        case us: 
-
-        
-
-        break;
+unsigned int Cilic_TIM2(unsigned int Period, Time_t Unidade);
 
 
 
-        case ms: if(Period >= MAX_PERIOD_TIM2_mS || Period < 1){ return 1;}
-       
-       
-       
-       
-        break;
-
-
-        case s: if(Period >= MAX_PERIOD_TIM2_S   || Period < 1){ return 1;}
-
-
-        
-        break;
-
-
-        default: return 1; 
-
-    }
-
-    REG_TIM2_CTRL1 |= TIM2_CEN_bit; // Liga o timer 2
-
-    return (unsigned int)0x0;
-}
-
-
-
-int Stop_cliclic_TIM2(){
-
-
-
-
-    return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void Stop_cliclic_TIM2();
 
 
 

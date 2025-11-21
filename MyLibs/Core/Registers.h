@@ -57,13 +57,13 @@
 #define REG_EXTI_INTFR  (*(volatile unsigned int *)0x40010414) //Interrupt flag register 0x0000XXXX
 
 
-// ___________ TIM2 REGISTRADORES _____________________//
+// ___________ TIM2 REGISTRADORES PARA USO COMO TIMER GERAL  _____________________//
 #define _TIM2_BASE 0x40000000
 
 // Registradores de configuracao
 #define REG_TIM2_CTRL1      *((volatile unsigned int*)(_TIM2_BASE + 0x00)) // Configuracoes gerais 1
 #define REG_TIM2_CTRL2      *((volatile unsigned int*)(_TIM2_BASE + 0x04)) // Configuracoes gerais 2
-#define REG_TIM2_SMCFGR     *((volatile unsigned int*)(_TIM2_BASE + 0x08))
+#define REG_TIM2_SMCFGR     *((volatile unsigned int*)(_TIM2_BASE + 0x08)) // Slave mode control register
 #define REG_TIM2_DMAINTENR  *((volatile unsigned int*)(_TIM2_BASE + 0x0C)) // Configura o DMA
 #define REG_TIM2_PSC        *((volatile unsigned int*)(_TIM2_BASE + 0x28)) // Registrador de prescaler que divide o clock para o perif§Ú§Ørico.
 //Registradores funcionais

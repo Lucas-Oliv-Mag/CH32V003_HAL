@@ -80,7 +80,7 @@ unsigned int Pin_set (GPIO_t PORT, unsigned int Pin, unsigned int Type, Speed_t 
  * @param pin  Pino ao qual deve ser lido, ex: 0 ~ 7.
  * @return unsigned int (HIGH ou LOW).
  */
-unsigned int Read_Pin(GPIO_t Port, unsigned int pin);
+volatile unsigned int Read_Pin(GPIO_t Port, unsigned int pin);
 
 
 /**

@@ -80,7 +80,7 @@ void Stop_I2C1(){
  * @param Data 
  * @return Caso houver algum erro na trasmissao, retornara a messagem.
  */
-I2C_msg_t Write_I2C1_polling(char Adress, char * Buffer, unsigned int Lenght){
+I2C_msg_t Write_I2C1_polling(char Adress, unsigned int Buffer[], unsigned int Lenght){
 
    unsigned int Trash, Timeout = 0; // Serve para somente limpar as flags dos registradores, por meio da leitura 
 
@@ -302,7 +302,7 @@ I2C_msg_t Read_I2C1(unsigned int Adress, unsigned int Read_Sequence[], unsigned 
 
 
 
-I2C_msg_t Write_I2C1(char Adress, char * Buffer, unsigned int Lenght_of_buffer){
+I2C_msg_t Write_I2C1(char Adress, unsigned int Buffer[], unsigned int Lenght_of_buffer){
 
     static unsigned int State = 0;
     static unsigned int Bytes;
@@ -343,7 +343,7 @@ I2C_msg_t Write_I2C1(char Adress, char * Buffer, unsigned int Lenght_of_buffer){
             }else{
                 Timeout = REG_I2C1_STAR2 - REG_I2C1_STAR2; // Apenas para limpar a flag ADDR.
 
-                REG_I2C1_DATAR = Buffer[0]; 
+                REG_I2C1_DATAR = (Buffer[0] & 0xffU); 
                 Bytes++; State++;
                 Timeout = 0;
             }
@@ -364,7 +364,7 @@ I2C_msg_t Write_I2C1(char Adress, char * Buffer, unsigned int Lenght_of_buffer){
 
                Timeout = 0;
                if(Bytes < Lenght){
-                  REG_I2C1_DATAR = Buffer[Bytes]; 
+                  REG_I2C1_DATAR = (Buffer[Bytes] & 0xFFU); 
                   Bytes++;
             
               }else{
@@ -381,7 +381,7 @@ I2C_msg_t Write_I2C1(char Adress, char * Buffer, unsigned int Lenght_of_buffer){
     break;
     }
 
-    if(Timeout > 100){
+    if(Timeout > I2C1_TIMEOUT_LIMIT){
         State = 0;
         return SLAVE_NO_RESPOND;
     }

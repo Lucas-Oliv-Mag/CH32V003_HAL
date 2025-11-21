@@ -84,7 +84,7 @@ typedef struct ADS1115_setup{
 }ADS1115_t;
 
 
-I2C_msg_t Config_ADS115(ADS1115_t* ADC, unsigned int* Buffer_out);
+I2C_msg_t Config_ADS115(ADS1115_t * ADC, unsigned int* Buffer_out);
 
 
 

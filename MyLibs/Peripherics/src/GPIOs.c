@@ -17,14 +17,14 @@ unsigned int Pin_set (GPIO_t PORT, unsigned int Pin, unsigned int Type, Speed_t 
 }
 
 
-unsigned int Read_Pin(GPIO_t Port, unsigned int pin){
+volatile unsigned int Read_Pin(GPIO_t Port, unsigned int pin){
 
-     if((((*(volatile unsigned int*)(Port + _INDR)) >> pin ) & 0x1U) == 1 )
+     if((( (*(volatile unsigned int*)(Port + _INDR)) >> pin ) & 0x1U) == 1 )
        {
         return 1;
        }
    else{
-       return 0;
+        return 0;
        }
 }
 

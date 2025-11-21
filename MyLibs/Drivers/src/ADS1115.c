@@ -3,7 +3,7 @@
 
 #include <Drivers/inc/ADS1115.h>
 
-I2C_msg_t Config_ADS115(ADS1115_t* ADC, unsigned int* Buffer_out){
+I2C_msg_t Config_ADS115(ADS1115_t* ADC, unsigned int Buffer_out[]){
 
    // char Buffer[3];
    // I2C_msg_t Request;
