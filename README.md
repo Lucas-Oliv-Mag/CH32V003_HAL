@@ -8,17 +8,18 @@ Assim abstraindo complexidades, diminuindo a curva de aprendizado de MCUs de 32B
 
 - Systick     (10%)
 - USART1      (70%)
-- I2C1        (30%)
+- I2C1        (100%)
 - ADC         (5%)
 - GPIOs       (100%)
 - RCC         (100%)
-- PFIC        (80%)
-- EXTI        (90%)
+- PFIC        (100%)
+- EXTI        (100%)
+- TIM2        (50%)
 
 Também incluem bibliotecas para fazer interface com dispositivos externos como:
 
 - Display LCD - HD44780 (100%)
 - ShiftRegister - 74HC595 (100%)
-- ADC I2C 16 bits - ADS1115 (20)%
+- ADC I2C 16 bits - ADS1115 (100)%
   
 A documentação está em português por enquanto, posteriormente será refeita em inglês.
